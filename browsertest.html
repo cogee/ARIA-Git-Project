@@ -1,0 +1,61 @@
+<html>
+<head>
+<script src="http://maps.google.com/maps/api/js?sensor=false
+"></script>
+<script src="http://code.jquery.com/jquery-1.7.1.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function () {
+	//wire up button
+		$('#go').click(function () {
+	//test geolocation
+	if (navigator && navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(geo_success, geo_error);
+		} else {
+			error('Geolocation no');
+			}
+			});
+			});
+
+function geo_error(err) {
+	if (err.code == 1) {
+		error('The user denied the request')
+		} else if (err.code == 2) {
+		error('The user denied the request2')
+		} else if (err.code == 3) {
+		error('The user denied the request3')
+		} else {
+			error('Uh oh')
+		}
+		}
+		
+		function error(msg) {
+			alert(msg);
+			}
+	
+
+function geo_success(position) {
+	printLatLong(position.coords.latitude, position.coords.longitude);
+	}
+	
+	//output
+	function printLatLong(lat, lng) {
+		alert(lat + "    " + lng);
+		$('#lat').html('<p>Lat: ' + lat + '</p>');
+		$('#long').html('<p>Long: ' + lng + '</p>');
+		}
+		
+		
+		
+		
+		
+		</script>
+	
+</script>
+</head>
+<body>
+<input type="button" id="go" value="Click Me To View Your Location" />
+<p id="lat">
+<p id="long">
+	</body>
+	</html>
